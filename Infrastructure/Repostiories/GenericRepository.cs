@@ -19,7 +19,7 @@ namespace MCIT_Task.Infrastructure.Repostiories
             this.dbSet = context.Set<TEntity>();
         }
 
-        public virtual async Task<IEnumerable<TEntity>> GetAsync(
+        public virtual async Task<IEnumerable<TEntity>> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             Expression<Func<TEntity, object>> includingPredicate = null)
@@ -38,9 +38,9 @@ namespace MCIT_Task.Infrastructure.Repostiories
             return await query.ToListAsync();
         }
 
-        public virtual TEntity GetByID(object id)
+        public virtual async Task<TEntity> GetByID(object id)
         {
-            return dbSet.Find(id);
+            return await dbSet.FindAsync(id);
         }
 
         public void Insert(TEntity entity)
