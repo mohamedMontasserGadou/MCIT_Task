@@ -1,3 +1,4 @@
+using MCIT_Task.Extensions;
 using MCIT_Task.Infrastructure.DBContext;
 using MCIT_Task.Infrastructure.UOW;
 using Microsoft.AspNetCore.Builder;
@@ -28,8 +29,11 @@ namespace MCIT_Task
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplicationServices(Configuration);
             services.AddControllers();
             services.AddSwaggerGen();
+            services.AddCors();
+            services.AddIdentityServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
