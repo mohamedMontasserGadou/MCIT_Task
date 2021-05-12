@@ -39,10 +39,10 @@ namespace MCIT_Task
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+
+            app.UseMiddleware<ExceptionMiddleware>();
+
+            app.UseHttpsRedirection();
 
             app.UseSwagger();
 
@@ -53,14 +53,13 @@ namespace MCIT_Task
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseCors(x => x.AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .WithOrigins("https://localhost:4200"));
 
-            app.UseCors(configurePolicy: c =>
-            {
-                c.AllowAnyOrigin();
-                c.AllowAnyHeader();
-                c.AllowAnyMethod();
-            });
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
