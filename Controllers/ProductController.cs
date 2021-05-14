@@ -56,7 +56,7 @@ namespace MCIT_Task.Controllers
             if (productCategory == null) return NotFound("There is no category with the specified Id");
 
             var newProduct = Product.Create(_mapper.Map<ProductInputParameter>(input));
-            productCategory.Products.Add(newProduct);
+            productCategory.AddNewProduct(newProduct);
             
             if(await _unitOfWork.Complete()) return Ok();
 
