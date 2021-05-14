@@ -10,6 +10,9 @@ namespace MCIT_Task.Infrastructure.EntityTypeConfigs
         {
             builder.ToTable("Products");
             builder.Property(p => p.Id).UseIdentityColumn();
+            builder.HasOne(p => p.Category)
+                .WithMany(c => c.Products)
+                .HasForeignKey(p => p.CategoryId);
         }
     }
 }

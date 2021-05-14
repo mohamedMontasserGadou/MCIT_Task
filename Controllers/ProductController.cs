@@ -1,62 +1,95 @@
-﻿using MCIT_Task.Domain.Entities;
+﻿using AutoMapper;
+using MCIT_Task.Domain.Entities;
+using MCIT_Task.Domain.ParameterObjects;
+using MCIT_Task.DTO;
 using MCIT_Task.Infrastructure.UOW;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MCIT_Task.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public ProductController(IUnitOfWork unitOfWork)
+        public ProductController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
-        [HttpGet("GetAll")]
-        public async Task<IEnumerable<object>> Get()
+        [HttpGet("GetAll/{categoryId}")]
+        public async Task<ActionResult<IEnumerable<ProductDto>>> GetAll(int categoryId)
         {
-            var repo = _unitOfWork.GetRepo<Product>();
+            if (categoryId <= 0) return BadRequest("This Category is invalid");
 
-            return await repo.Get();
+            var products = await _unitOfWork.GetRepo<Product>().GetAll(p => p.CategoryId == categoryId);
+            
+            return Ok(_mapper.Map<IEnumerable<ProductDto>>(products));
         }
 
         [HttpGet("Get/{id}")]
-        public async Task<object> Get(int id)
+        public async Task<ActionResult<ProductDto>> GetById(int id)
         {
-            var repo = _unitOfWork.GetRepo<Product>();
+            if (id <= 0) return BadRequest();
 
-            return await repo.GetByID(id);
+            var product = await _unitOfWork.GetRepo<Product>().GetByID(id);
+
+            if (product == null) return NotFound("Could not find the product");
+
+            return Ok(_mapper.Map<ProductDto>(product));
         }
 
         [HttpPost("Add")]
-        public async Task Add([FromBody] object value)
+        public async Task<ActionResult> Add([FromBody] CreateProductDto input)
         {
-            var repo = _unitOfWork.GetRepo<Product>();
-            //repo.Insert(value);
-            await _unitOfWork.CompleteAsync();
+            if (input.CategoryId <= 0) return BadRequest("This Category is invalid");
+
+            var productCategory = await _unitOfWork.GetRepo<Category>().GetByID(input.CategoryId);
+
+            if (productCategory == null) return NotFound("There is no category with the specified Id");
+
+            var newProduct = Product.Create(_mapper.Map<ProductInputParameter>(input));
+            productCategory.Products.Add(newProduct);
+            
+            if(await _unitOfWork.Complete()) return Ok();
+
+            return BadRequest("failed to add new product");
         }
 
         [HttpPut("Edit/{id}")]
-        public async Task Edit(int id, [FromBody] string value)
+        public async Task<ActionResult> Edit(int id, [FromBody] EditProductDto input)
         {
-            var repo = _unitOfWork.GetRepo<Product>();
-            var product = await repo.GetByID(id);
+            if (id <= 0) return BadRequest("Invalid Product Id");
 
-            await _unitOfWork.CompleteAsync();
+            var product = await _unitOfWork.GetRepo<Product>().GetByID(id);
+
+            if (product == null) return NotFound("There is no product with the specified Id");
+
+            product.Edit(input.Name, input.Price);
+
+            if (await _unitOfWork.Complete()) return Ok();
+
+            return BadRequest($"Failed to edit product with Id : {id}");
         }
 
         [HttpDelete("Remove/{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
+            if (id <= 0) return BadRequest("Invalid Product Id");
+
+            _unitOfWork.GetRepo<Product>().Delete(id);
+
+            if(await _unitOfWork.Complete()) return Ok();
+
+            return BadRequest($"Failed to remove product with id : {id}");
         }
+
     }
 }

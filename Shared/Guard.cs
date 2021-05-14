@@ -13,9 +13,9 @@ namespace MCIT_Task.Shared
                 throw new Exception("String value is not valid");
         }
 
-        public static void AssertDecimalGreaterThanZero(decimal value)
+        public static void AssertValueGreaterThanZero(object value)
         {
-            if (value < 0)
+            if ((int)value < 0)
                 throw new Exception("value can't be less than zero");
         }
 

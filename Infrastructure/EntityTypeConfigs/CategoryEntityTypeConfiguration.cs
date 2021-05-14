@@ -10,7 +10,9 @@ namespace MCIT_Task.Infrastructure.EntityTypeConfigs
         {
             builder.ToTable("Categories");
             builder.Property(c => c.Id).UseIdentityColumn();
-            builder.HasMany(c => c.Products);
+            builder.HasMany(c => c.Products)
+                .WithOne(p => p.Category)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -16,9 +16,9 @@ namespace MCIT_Task.Infrastructure.UOW
             _dbContext = dbContext;
         }
 
-        public async Task CompleteAsync()
+        public async Task<bool> Complete()
         {
-            await _dbContext.SaveChangesAsync();
+            return await _dbContext.SaveChangesAsync() > 0;
         }
 
         public GenericRepository<TEntity> GetRepo<TEntity>() where TEntity : class

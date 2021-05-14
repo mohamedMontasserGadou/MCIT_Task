@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MCIT_Task.Domain.ParameterObjects
+namespace MCIT_Task.DTO
 {
-    public class ProductInputParameter
+    public class CreateProductDto
     {
         public string Name { get; set; }
         public decimal Price { get; set; }

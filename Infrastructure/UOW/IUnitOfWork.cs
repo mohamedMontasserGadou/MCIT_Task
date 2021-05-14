@@ -9,6 +9,6 @@ namespace MCIT_Task.Infrastructure.UOW
     public interface IUnitOfWork
     {
         public GenericRepository<TEntity> GetRepo<TEntity>() where TEntity : class;
-        public Task CompleteAsync();
+        public Task<bool> Complete();
     }
 }
