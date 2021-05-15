@@ -10,10 +10,14 @@ export class ProductCardComponent implements OnInit {
   
   @Input() product: ProductDto;
   @Output() productDeleted: EventEmitter<number> = new EventEmitter<number>();
-
+  
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  deleteProduct(id: number){
+    this.productDeleted.emit(id);
   }
 
 }
