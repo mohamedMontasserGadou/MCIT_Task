@@ -22,7 +22,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { HasRoleDirective } from './_directives/has-role.directive';
 import { CategoryCardComponent } from './category/category-card/category-card.component';
 import { CreateOrEditCategoryComponent } from './category/create-or-edit-category/create-or-edit-category.component';
-
+import { ProductCardComponent } from './product/product-card/product-card.component';
+import { ProductsListComponent } from './product/products-list/products-list.component';
+import { CreateOrEditProductComponent } from './product/create-or-edit-product/create-or-edit-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,10 @@ import { CreateOrEditCategoryComponent } from './category/create-or-edit-categor
     CategoriesListComponent,
     HasRoleDirective,
     CategoryCardComponent,
-    CreateOrEditCategoryComponent
+    CreateOrEditCategoryComponent,
+    ProductCardComponent,
+    ProductsListComponent,
+    CreateOrEditProductComponent
   ],
   imports: [
     BrowserModule,

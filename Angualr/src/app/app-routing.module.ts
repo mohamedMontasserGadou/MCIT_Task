@@ -7,6 +7,7 @@ import { AdminGuard } from './_guards/admin.guard';
 import { CategoriesListComponent } from './category/categories-list/categories-list.component';
 import { ProductsListComponent } from './product/products-list/products-list.component';
 import { CreateOrEditCategoryComponent } from './category/create-or-edit-category/create-or-edit-category.component';
+import { CreateOrEditProductComponent } from './product/create-or-edit-product/create-or-edit-product.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -19,6 +20,8 @@ const routes: Routes = [
       {path: 'categories/add', component: CreateOrEditCategoryComponent},
       {path: 'categories/edit/:id', component: CreateOrEditCategoryComponent},
       {path: 'products/:categoryId', component: ProductsListComponent},
+      {path: 'products/:categoryId/add', component: CreateOrEditProductComponent},
+      {path: 'products/:categoryId/edit/:id', component: CreateOrEditProductComponent},
       {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
     ]
   },

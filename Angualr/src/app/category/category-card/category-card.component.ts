@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { CategoryDto } from 'src/app/_models/categoryDto';
-import { CategoryService } from 'src/app/_services/category.service';
 
 @Component({
   selector: 'category-card',

@@ -1,1 +1,15 @@
-<p>create-or-edit-product works!</p>
+<div class="row" *ngIf="product">
+    <div class="col-8">
+        <form #form="ngForm" id="form" (ngSubmit)="createOrEditProduct()">
+            <div class="form-inline">
+                <label for="city">Name: </label>
+                <input [(ngModel)]="product.name" type="text" name="name" class="form-control mx-2">
+
+                <label for="city">Price: </label>
+                <input [(ngModel)]="product.price" type="number" min="1" name="price" class="form-control mx-2">
+
+                <button [disabled]="!form.dirty" form="form" type="submit" class="btn btn-success">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
