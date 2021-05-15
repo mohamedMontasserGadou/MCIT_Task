@@ -17,6 +17,7 @@ namespace MCIT_Task.Shared
             CreateMap<ProductInputParameter, CreateProductDto>();
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryInputParameter, CreateCategoryDto>();
+            CreateMap<RegisterDto, User>();
         }
     }
 }

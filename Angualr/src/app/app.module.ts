@@ -19,6 +19,7 @@ import { CategoriesListComponent } from './category/categories-list/categories-l
 import { ToastrModule } from 'ngx-toastr';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { HasRoleDirective } from './_directives/has-role.directive';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     UserManagementComponent,
     RolesModalComponent,
     CategoriesListComponent,
+    HasRoleDirective
   ],
   imports: [
     BrowserModule,
