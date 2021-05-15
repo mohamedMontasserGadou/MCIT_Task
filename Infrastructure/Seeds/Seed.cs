@@ -32,7 +32,7 @@ namespace MCIT_Task.Infrastructure.Seeds
             };
 
             await userManager.CreateAsync(admin, "Pa$$w0rd");
-            await userManager.AddToRolesAsync(admin, new[] { "Admin", "Moderator" });
+            await userManager.AddToRolesAsync(admin, new[] { "Admin" });
         }
     }
 }

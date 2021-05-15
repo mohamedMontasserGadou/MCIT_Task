@@ -17,7 +17,6 @@ import { UserManagementComponent } from './admin/user-management/user-management
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 import { CategoriesListComponent } from './category/categories-list/categories-list.component';
 import { ToastrModule } from 'ngx-toastr';
-import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { HasRoleDirective } from './_directives/has-role.directive';
 import { CategoryCardComponent } from './category/category-card/category-card.component';
@@ -25,6 +24,7 @@ import { CreateOrEditCategoryComponent } from './category/create-or-edit-categor
 import { ProductCardComponent } from './product/product-card/product-card.component';
 import { ProductsListComponent } from './product/products-list/products-list.component';
 import { CreateOrEditProductComponent } from './product/create-or-edit-product/create-or-edit-product.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,8 +53,8 @@ import { CreateOrEditProductComponent } from './product/create-or-edit-product/c
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
     }),
-    NgxGalleryModule,
-    ModalModule
+    ModalModule.forRoot(),
+    TabsModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

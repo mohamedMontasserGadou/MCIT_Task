@@ -16,16 +16,17 @@ export class UserManagementComponent implements OnInit {
   constructor(private adminService: AdminService, private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    this.getUsersWithRoles();
+    this.getUsers();
   }
 
-  getUsersWithRoles() {
-    this.adminService.getUsersWithRoles().subscribe(users => {
+  getUsers() {
+    this.adminService.getUsers().subscribe(users => {
       this.users = users;
     })
   }
 
   openRolesModal(user: User) {
+    debugger;
     const config = {
       class: 'modal-dialog-centered',
       initialState: {
