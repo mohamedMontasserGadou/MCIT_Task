@@ -2,14 +2,14 @@
     <h2 class="text-center text-primary">Sign up</h2>
     <hr>
 
-    <app-text-input [formControl]='registerForm.controls["username"]' 
-        [label]='"Username"'></app-text-input>
-    <app-text-input [formControl]='registerForm.controls["password"]' 
+    <text-input [formControl]='registerForm.controls["username"]' 
+        [label]='"Username"'></text-input>
+    <text-input [formControl]='registerForm.controls["password"]' 
         [label]='"Password"' [type]='"password"'>
-    </app-text-input>
-    <app-text-input [formControl]='registerForm.controls["confirmPassword"]' 
+    </text-input>
+    <text-input [formControl]='registerForm.controls["confirmPassword"]' 
         [label]='"Confirm Password"'
-        [type]='"password"'></app-text-input>
+        [type]='"password"'></text-input>
 
     <div class="row" *ngIf="validationErrors.length > 0">
         <ul class="text-danger">
