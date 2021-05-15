@@ -15,6 +15,10 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
+import { CategoriesListComponent } from './category/categories-list/categories-list.component';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,7 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
     AdminPanelComponent,
     UserManagementComponent,
     RolesModalComponent,
+    CategoriesListComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +39,11 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    }),
+    NgxGalleryModule,
+    ModalModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

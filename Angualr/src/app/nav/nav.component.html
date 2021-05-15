@@ -5,10 +5,7 @@
         <ul class="navbar-nav mr-auto">
             <ng-container *ngIf="accountService.currentUser$ | async">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink='/members' routerLinkActive='active' >Categories</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink='/lists' routerLinkActive='active'>Products</a>
+                    <a class="nav-link" routerLink='/categories' routerLinkActive='active' >Categories</a>
                 </li>
                 <li *appHasRole='["Admin"]' class="nav-item">
                     <a class="nav-link" routerLink='/admin'routerLinkActive='active' >Admin</a>
