@@ -9,6 +9,5 @@ namespace MCIT_Task.Domain.ParameterObjects
     public class CategoryInputParameter
     {
         public string Name { get; set; }
-        public List<Product> Products { get; set; }
     }
 }

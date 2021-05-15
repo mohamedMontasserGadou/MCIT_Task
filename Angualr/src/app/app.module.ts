@@ -20,6 +20,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { HasRoleDirective } from './_directives/has-role.directive';
+import { CategoryCardComponent } from './category/category-card/category-card.component';
+import { CreateOrEditCategoryComponent } from './category/create-or-edit-category/create-or-edit-category.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { HasRoleDirective } from './_directives/has-role.directive';
     UserManagementComponent,
     RolesModalComponent,
     CategoriesListComponent,
-    HasRoleDirective
+    HasRoleDirective,
+    CategoryCardComponent,
+    CreateOrEditCategoryComponent
   ],
   imports: [
     BrowserModule,

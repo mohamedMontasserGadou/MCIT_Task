@@ -8,13 +8,8 @@ namespace MCIT_Task.DTO
 {
     public class CreateCategoryDto
     {
-        public CreateCategoryDto()
-        {
-            Products = new List<CreateProductDto>();
-        }
         [Required]
         [MinLength(1)]
         public string Name { get; set; }
-        public List<CreateProductDto> Products { get; set; }
     }
 }

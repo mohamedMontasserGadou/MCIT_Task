@@ -19,17 +19,16 @@ namespace MCIT_Task.Domain.Entities
             _products = new List<Product>();
         }
 
-        private Category(string name, List<Product> products)
+        private Category(string name)
         {
             Name = name;
-            _products = products;
         }
 
         public static Category Create(CategoryInputParameter input)
         {
             Guard.AssertStringIsValid(input.Name);
 
-            return new Category(input.Name, input.Products);
+            return new Category(input.Name);
         }
 
         public void AddNewProduct(Product product)
