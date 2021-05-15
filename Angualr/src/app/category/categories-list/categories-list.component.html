@@ -7,7 +7,7 @@
 
     <div class="row mt-3">
         <div class="col-2" *ngFor="let category of categories">
-            <category-card (categoryDeleted)="deleteCategory($event)" [member]="member"></category-card>
+            <category-card (categoryDeleted)="deleteCategory($event)" [category]="category"></category-card>
         </div>
     </div>
 </div>

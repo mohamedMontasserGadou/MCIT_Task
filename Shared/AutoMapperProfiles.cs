@@ -14,9 +14,9 @@ namespace MCIT_Task.Shared
         public AutoMapperProfiles()
         {
             CreateMap<Product, ProductDto>();
-            CreateMap<ProductInputParameter, CreateProductDto>();
+            CreateMap<CreateProductDto, ProductInputParameter>();
             CreateMap<Category, CategoryDto>();
-            CreateMap<CategoryInputParameter, CreateCategoryDto>();
+            CreateMap<CreateCategoryDto, CategoryInputParameter>();
             CreateMap<RegisterDto, User>();
         }
     }
